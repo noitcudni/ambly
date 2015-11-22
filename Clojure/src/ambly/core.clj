@@ -149,7 +149,8 @@
   [reg-type name-endpoint-map]
   {:pre [(string? reg-type)]
    :post [(fn? %)]}
-  (let [mdns-service (JmDNS/create)
+  (let [ambly-ip-address (InetAddress/getLocalHost)
+        mdns-service (JmDNS/create ambly-ip-address)
         service-listener
         (reify ServiceListener
           (serviceAdded [_ service-event]
